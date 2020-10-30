@@ -92,7 +92,7 @@ class UserClient:
             for k,v in self.user_settings.items():
                 file.writelines(k + ":" + v + '\n')
 
-    def access_sql_lite(self,browser_are_checking,from_time, until_time):
+    def access_sql_lite(self,browser_are_checking,from_time, until_time, history_meta_data):
 
         if(from_time > until_time):
             temp=from_time
@@ -159,7 +159,7 @@ class UserClient:
                 with open("./user_folder/user_key.key", "wb") as file:
                     file.write(encrypted_key)
                 with open("./user_folder/meta_data.txt", "w") as file:
-                    file.write(meta_data)
+                    file.write(meta_data + "\n" + history_meta_data)
 
 
         except sqlite3.Error as e:
@@ -191,8 +191,8 @@ if __name__ == '__main__':
             keep_running=False
 
         elif(user_command == LOAD_USER_DATA):
-            from_time = input("From time (dd/mm/yy hh:mm in 24 hr clock):")
-            until_time = input("Until time (dd/mm/yy hh:mm in 24 hr clock):")
+            from_time = input("From time (dd/mm/yyyy hh:mm in 24 hr clock):")
+            until_time = input("Until time (dd/mm/yyyy hh:mm in 24 hr clock):")
             browser_checking = input("Enter the browser are checking (chrome or firefox")
             try:
                 from_time_fin = datetime.strptime(from_time, '%d/%m/%Y %H:%M')
@@ -201,8 +201,10 @@ if __name__ == '__main__':
             except:
                 print("Please check date and time format \n")
 
+            history_meta_data = input("Please enter a short description of what you where researching during this time:")
+
             if(browser_checking == CHROME or browser_checking == FIREFOX):
-                client.access_sql_lite(browser_checking,from_time_fin,until_time_fin)
+                client.access_sql_lite(browser_checking,from_time_fin,until_time_fin,history_meta_data)
             else:
                 print("Browser not compatible \n")
 
