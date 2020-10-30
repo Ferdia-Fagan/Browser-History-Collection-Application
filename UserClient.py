@@ -170,7 +170,8 @@ class UserClient:
               "or \n"
               "submit to dropbox: https://www.dropbox.com/request/gKADUv9Yb9AUDLqrfrrT")
         print("\n \n REMEMBER: YOUR data has been encrypted. It is safe. The only reason to use dropbox is incase you want to be annonomous.\n"
-              "Your data is safe!")
+              "Your data is safe!\n")
+        print("WARNING: This folder will be over riden every time you run the program. So please send to me per segment of browseing history.\n")
 
 
 def give_user_prompts():
