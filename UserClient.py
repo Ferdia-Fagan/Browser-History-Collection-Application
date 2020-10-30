@@ -47,7 +47,6 @@ def write_key():
     key = Fernet.generate_key()
     # with open(os.path.join(__location__, "./user_folder/user_key.key", "wb")) as key_file:
     with open("./user_folder/user_key.key", "wb") as key_file:
-        print("the key is " + str(key))
         key_file.write(key)
     return key
 
@@ -70,9 +69,9 @@ class UserClient:
         user_settings = [setting.split(':') for setting in settings_file.split('\n')]
 
         if(user_settings != [[""]]):
-
             self.user_settings = {user_settings[i][0]: user_settings[i][1] for i in range(0,len(user_settings)-1)}
         else:
+            print("\n REMEMBER TO SETUP firefox_history_folder_path AND/OR chrome_history_folder_path. \n")
             self.user_settings = {}
 
         # Make new key:
@@ -160,32 +159,44 @@ class UserClient:
                     file.write(encrypted_key)
                 with open("./user_folder/meta_data.txt", "w") as file:
                     file.write(meta_data + "\n" + history_meta_data)
+        except:
+            print("\n--------------------------------------------------------------------------\n")
+            print("\n CANT FIND BROWSERS.\n REMEMBER TO SETUP firefox_history_folder_path AND/OR chrome_history_folder_path. \n Please try again")
+            print("\n--------------------------------------------------------------------------\n")
+            return
+        print("Completed collecting and encrypting data \n")
+
+        print("\n Please email: ferdiafagan@outlook.com \n"
+              "or \n"
+              "submit to dropbox: https://www.dropbox.com/request/gKADUv9Yb9AUDLqrfrrT")
+        print("\n \n REMEMBER: YOUR data has been encrypted. It is safe. The only reason to use dropbox is incase you want to be annonomous.\n"
+              "Your data is safe!")
 
 
-        except sqlite3.Error as e:
-            print(e)
-
-        print("Completed collecting and encrypting data")
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print("Welcome")
+def give_user_prompts():
+    print("\n--------------------------------------------------------------------------\n")
     print("Commands: \n"
-          "To load your data into a folder: load_my_data "
+          "1) To load your data into a folder: load_my_data "
           # "Then you will be prompted with:<from_time=\"dd/mm/yy hh:mm\"> <until_time=\"dd/mm/yy hh:mm\"> \n"
-          "To exit: exit \n"
-          "To add path to firefox browser history: firefox_history_folder_path=\"the path\" \n"
-          "To add path to chrome browser history: chrome_history_folder_path=\"the path\" \n")
+          "2) To exit: exit \n"
+          "3) To add path to firefox browser history: firefox_history_folder_path=\"the path\" \n"
+          "4) To add path to chrome browser history: chrome_history_folder_path=\"the path\" \n")
 
     print("Reminder \n"
           "1) Dont include '<' or '>' in commands. They are just there to be more specific on what to enter. \n"
           "2) Time is in 24 hr clock"
           "3) The data will be loaded within this applications folder, in a subfolder called \"user_folder\"")
+    print("\n--------------------------------------------------------------------------\n")
+
+# Press the green button in the gutter to run the script.
+if __name__ == '__main__':
+    print("Welcome")
 
     keep_running=True
     client = UserClient()
 
     while(keep_running):
+        give_user_prompts()
         user_command = input("Please enter your command (or 'exit')")
         if(user_command == EXIT):
             keep_running=False
