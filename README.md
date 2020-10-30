@@ -36,7 +36,9 @@ internet to learn.</b> I want browser history where you where actively researchi
   <p>I dont want browser history from when you where searching through youtube, or facebook, or ... anything weird...</p>
   <p>I dont want any personal data.</p> 
   <p>I dont want to use this data to do some kind of marketing or psychological analysis of you.</p>
-
+  
+  <p>I only collect what you can see in your browsing history (i.e. the search paths and link you use. And I only take a set of time you choose yourself.</p>
+  
 <h2>What is this project</h1>
 
 <p>This python project is not my final year project. 
