@@ -39,6 +39,8 @@ internet to learn.</b> I want browser history where you where actively researchi
   
   <p>I only collect what you can see in your browsing history (i.e. the search paths and link you use. And I only take a set of time you choose yourself.</p>
   
+  <p>You dont have to send me 100's of hours of browsing for it to be usefull. If you are researching something for even 1hr and send me that, its good. But the more the merrior!</p>
+  
 <h2>What is this project</h1>
 
 <p>This python project is not my final year project. 
